@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController, NavParams, ViewController } from 'ionic-angular';
+import {MenuController, ModalController, NavParams} from 'ionic-angular';
 import {LendBookPage} from "../lend-book/lend-book";
+import {Book} from "../../models/Book";
+import {MainService} from "../../services/main.service";
 
 @Component({
   selector: 'page-book-list',
@@ -8,33 +10,29 @@ import {LendBookPage} from "../lend-book/lend-book";
 })
 export class BookListPage {
 
-  booksList = [
-      {
-        name: 'Croc-Blanc',
-        author: 'Jack London'
-      },
-      {
-        name: 'Le comte de Monte-Cristo',
-        author: 'Alexandre Dumas'
-      },
-      {
-        name: 'Robinson Crusoé',
-        author: 'Daniel Defoë'
-      }
-  ];
+  booksList: Book[];
 
   constructor(public modalCtrl: ModalController,
               public navParams: NavParams,
-              public viewCtrl: ViewController) {
+              public menuCtrl: MenuController,
+              private mainService: MainService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookListPage');
   }
 
-  onLoadBook(book: {name: string, author: string}) {
-      let modal = this.modalCtrl.create(LendBookPage, {book: book});
+  ionViewWillEnter() {
+      this.booksList = this.mainService.booksList.slice();
+  }
+
+  onLoadBook(index: number) {
+      let modal = this.modalCtrl.create(LendBookPage, {index: index});
       modal.present();
+  }
+
+  onToggleMenu() {
+      this.menuCtrl.open();
   }
 
 }

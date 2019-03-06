@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import {MenuController, NavController, NavParams} from 'ionic-angular';
 
+/**
+ * Generated class for the OptionsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+  selector: 'page-options',
+  templateUrl: 'options.html',
 })
-export class SettingsPage {
+export class OptionsPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -13,7 +20,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    console.log('ionViewDidLoad OptionsPage');
   }
 
   onToggleMenu() {

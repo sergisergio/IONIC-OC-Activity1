@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
+import { NavParams, AlertController, ViewController} from 'ionic-angular';
+import { Book} from "../../models/Book";
+import { MainService } from '../../services/main.service';
+
 
 @Component({
   selector: 'page-lend-book',
@@ -7,60 +10,55 @@ import {NavController, NavParams, AlertController, ViewController} from 'ionic-a
 })
 export class LendBookPage implements OnInit  {
 
-  book: {
-    name: string,
-    author: string
-  };
+  index: number;
+  book: Book;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public navParams: NavParams,
               public alertCtrl: AlertController,
-              public viewCtrl: ViewController) {
+              public viewCtrl: ViewController,
+              public mainService: MainService) {
   }
 
   ngOnInit() {
-    this.book = this.navParams.get('book');
+    this.index = this.navParams.get('index');
+    this.book = this.mainService.booksList[this.index];
   }
 
-
-    ionViewDidLoad() {
-    console.log('ionViewDidLoad LendBookPage');
-  }
-
-  onLendBook() {
-      let alert = this.alertCtrl.create({
-          title: 'Êtes-vous certain(e) de vouloir continuer ?',
-          subTitle: 'Ce livre sera prêté !',
-          buttons: [
-              {
-                  text: 'Annuler',
-                  role: 'cancel'
-              },
-              {
-                  text: 'Confirmer',
-                  handler: () => console.log('Confirmé !')
-              }
-          ]
-      });
-      alert.present();
-  }
-
-  onGiveBackBook() {
-      let alert = this.alertCtrl.create({
-          title: 'Êtes-vous certain(e) de vouloir continuer ?',
-          subTitle: 'Ce livre sera rendu !',
-          buttons: [
-              {
-                  text: 'Annuler',
-                  role: 'cancel'
-              },
-              {
-                  text: 'Confirmer',
-                  handler: () => console.log('Confirmé !')
-              }
-          ]
-      });
-      alert.present();
+  onToggle() {
+      if (this.book.isLent = false) {
+          let alert = this.alertCtrl.create({
+              title: 'Êtes-vous certain(e) de vouloir continuer ?',
+              subTitle: 'Ce livre sera prêté !',
+              buttons: [
+                  {
+                      text: 'Annuler',
+                      role: 'cancel'
+                  },
+                  {
+                      text: 'Confirmer',
+                      handler: () => this.book.isLent = true
+                  }
+              ]
+          });
+          alert.present();
+      }
+      else {
+          let alert = this.alertCtrl.create({
+              title: 'Êtes-vous certain(e) de vouloir continuer ?',
+              subTitle: 'Ce livre sera rendu !',
+              buttons: [
+                  {
+                      text: 'Annuler',
+                      role: 'cancel'
+                  },
+                  {
+                      text: 'Confirmer',
+                      handler: () => this.book.isLent = false
+                  }
+              ]
+          });
+          alert.present();
+      }
   }
 
   dismissModal() {
