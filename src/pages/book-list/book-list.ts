@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the BookListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ModalController, NavParams, ViewController } from 'ionic-angular';
+import {LendBookPage} from "../lend-book/lend-book";
 
 @Component({
   selector: 'page-book-list',
@@ -14,11 +8,33 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class BookListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  booksList = [
+      {
+        name: 'Croc-Blanc',
+        author: 'Jack London'
+      },
+      {
+        name: 'Le comte de Monte-Cristo',
+        author: 'Alexandre Dumas'
+      },
+      {
+        name: 'Robinson Crusoé',
+        author: 'Daniel Defoë'
+      }
+  ];
+
+  constructor(public modalCtrl: ModalController,
+              public navParams: NavParams,
+              public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookListPage');
+  }
+
+  onLoadBook(book: {name: string, author: string}) {
+      let modal = this.modalCtrl.create(LendBookPage, {book: book});
+      modal.present();
   }
 
 }

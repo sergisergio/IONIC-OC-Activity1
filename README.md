@@ -46,7 +46,20 @@ ionic generate page book-list --no-module
 - Puis dans la vue, on utilise les components ion-tabs pour créer les tabs de navigation.  
 - Enfin, dans AppComponent, on définit TabsPage en tant que rootPage (rootPage:any = TabsPage;).  
 
+#### Liste de livres
 
+- Création d'une liste de livres dans book-list.ts et affichage de cette liste avec une boucle *ngFor.
+- components ion-list, ion-cards, ion-card-header et ion-card-content utilisés pour l'affichage.  
+- Chaque livre nous envoie sur une fenêtre modale dans laquelle on retrouve 2 boutons pour prêter ou emprunter le livre.  
+- Un "alert" apparaît pour confirmer le prêt ou la restitution du livre.  
+- ion-grid est utilisé pour agencer la vue avec les boutons.
+
+
+#### Ouverture d'une fenêtre modale permettant de prêter ou de rendre l'élément.
+
+#### Les éléments prêtés auront une couleur différente.
+
+#### Un menu latéral permettra d'accéder à une page de réglages.
 
 
 
