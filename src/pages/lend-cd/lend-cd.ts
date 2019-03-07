@@ -30,7 +30,7 @@ export class LendCdPage {
   }
 
     onToggle() {
-        if (this.cd.isLent = false) {
+        if (!this.cd.isLent) {
             let alert = this.alertCtrl.create({
                 title: 'Êtes-vous certain(e) de vouloir continuer ?',
                 subTitle: 'Ce CD sera prêté !',

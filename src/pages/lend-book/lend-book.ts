@@ -25,41 +25,41 @@ export class LendBookPage implements OnInit  {
   }
 
   onToggle() {
-      if (this.book.isLent = false) {
-          let alert = this.alertCtrl.create({
-              title: 'Êtes-vous certain(e) de vouloir continuer ?',
-              subTitle: 'Ce livre sera prêté !',
-              buttons: [
-                  {
-                      text: 'Annuler',
-                      role: 'cancel'
-                  },
-                  {
-                      text: 'Confirmer',
-                      handler: () => this.book.isLent = true
-                  }
-              ]
-          });
-          alert.present();
-      }
-      else {
-          let alert = this.alertCtrl.create({
-              title: 'Êtes-vous certain(e) de vouloir continuer ?',
-              subTitle: 'Ce livre sera rendu !',
-              buttons: [
-                  {
-                      text: 'Annuler',
-                      role: 'cancel'
-                  },
-                  {
-                      text: 'Confirmer',
-                      handler: () => this.book.isLent = false
-                  }
-              ]
-          });
-          alert.present();
-      }
-  }
+        if (!this.book.isLent) {
+            let alert = this.alertCtrl.create({
+                title: 'Êtes-vous certain(e) de vouloir continuer ?',
+                subTitle: 'Ce CD sera prêté !',
+                buttons: [
+                    {
+                        text: 'Annuler',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Confirmer',
+                        handler: () => this.book.isLent = true
+                    }
+                ]
+            });
+            alert.present();
+        }
+        else {
+            let alert = this.alertCtrl.create({
+                title: 'Êtes-vous certain(e) de vouloir continuer ?',
+                subTitle: 'Ce livre sera rendu !',
+                buttons: [
+                    {
+                        text: 'Annuler',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Confirmer',
+                        handler: () => this.book.isLent = false
+                    }
+                ]
+            });
+            alert.present();
+        }
+    }
 
   dismissModal() {
       this.viewCtrl.dismiss();
